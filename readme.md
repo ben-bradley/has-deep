@@ -37,7 +37,7 @@ console.log(x); // => winning
 I'm writing this module to help make it suck less.
 
 ```javascript
-var has = require('deep-has');
+var has = require('has-deep');
 
 var x = (has(a, 'b.c.d.e.f.g')) ? a.b.c.d.e.f.g : 'winning';
 console.log(x); // => winning

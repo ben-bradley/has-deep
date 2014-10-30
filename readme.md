@@ -1,4 +1,6 @@
-# Has Deep
+# Has Deep [![Build Status](https://secure.travis-ci.org/ben-bradley/has-deep.png)](http://travis-ci.org/ben-bradley/has-deep)
+
+[![NPM](https://nodei.co/npm/has-deep.png?downloads=true)](https://nodei.co/npm/has-deep/)
 
 This module is designed to simplify the painful process of validating the deep properties of an object.
 

@@ -47,6 +47,12 @@ console.log(x); // => winning
 
 Yeah, the result is the same, but look at how much less validation there is!
 
+## `has(object, path)`
+
+- `object` - _Object_ This is the source object that you want to validate.
+- `path` - _String_ This is a period-delimited string that is the property path you want to validate.
+- Returns the value at the end of the `path` or `undefined` if the path doesn't exist.
+
 ## Example
 
 ```javascript
@@ -56,14 +62,16 @@ var a = {
   b: {
     c: {
       d: {
-        e: true
+        e: 'winning!'
       }
     }
   }
 };
 
-var x = (has(a, 'b.c.d.e.f.g')) ? a.b.c.d.e.f.g : 'winning';
-console.log(x); // => winning
+console.log(has(a, 'b.c.d.e.f.g')); // => undefined
+console.log(has(a, 'b.c.d.e.f')); // => undefined
+console.log(has(a, 'b.c.d.e')); // => "winning!"
+console.log(has(a, 'b.c.d')); // => { e: "winning!" }
 ```
 
 ## Install

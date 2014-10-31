@@ -74,4 +74,16 @@ describe('Has Deep', function () {
 
   });
 
+  describe('Value should return result from object', function () {
+
+    it('a.b.c.d.string_notempty === "winning!"', function () {
+      (has(a, 'b.c.d.string_notempty')).should.eql('winning!');
+    });
+
+    it('a.b.c === { d: { ... } }', function () {
+      (has(a, 'b.c')).should.be.an.Object.with.property('d');
+    });
+
+  })
+
 });

@@ -97,3 +97,7 @@ npm test
 ```
 mocha -R spec
 ```
+
+## Versions
+- 0.0.2 - Added deep-array validation
+- 0.0.1 - Inital commit

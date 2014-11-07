@@ -11,6 +11,18 @@ var a = {
         boolean_false: false,
         array_empty: [],
         array_notempty: [1, 2, 3],
+        array_ofobjects: [{
+          e: 1
+        }, {
+          e: 0
+        }],
+        array_deeparray: [{
+          e: [{
+            f: 1
+          }, {
+            f: 0
+          }]
+        }],
         number_one: 1,
         number_zero: 0,
         null_value: null
@@ -32,6 +44,18 @@ describe('Has Deep', function () {
       boolean_false: false,
       array_empty: [],
       array_notempty: [1, 2, 3],
+      array_ofobjects: [{
+        e: 1
+      }, {
+        e: 0
+      }],
+      array_deeparray: [{
+        e: [{
+          f: 1
+        }, {
+          f: 0
+        }]
+      }],
       number_one: 1,
       number_zero: 0,
       null_value: null
@@ -84,6 +108,24 @@ describe('Has Deep', function () {
       (has(a, 'b.c')).should.be.an.Object.with.property('d');
     });
 
-  })
+  });
+
+  describe('Evaluate properties on objects in arrays', function () {
+
+    it('when the object & property exists', function () {
+      (has(a, 'b.c.d.array_ofobjects')).should.be.an.Array;
+      (has(a, 'b.c.d.array_ofobjects[0]')).should.be.an.Object;
+      (has(a, 'b.c.d.array_ofobjects[0].e')).should.equal(1);
+      (has(a, 'b.c.d.array_ofobjects[1].e')).should.equal(0);
+    });
+
+    it('when the object & property exist deeply', function () {
+      (has(a, 'b.c.d.array_deeparray[0].e')).should.be.an.Array;
+      (has(a, 'b.c.d.array_deeparray[0].e[0]')).should.be.an.Object;
+      (has(a, 'b.c.d.array_deeparray[0].e[0].f')).should.equal(1);
+      (has(a, 'b.c.d.array_deeparray[0].e[1].f')).should.equal(0);
+    });
+
+  });
 
 });

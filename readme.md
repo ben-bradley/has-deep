@@ -4,6 +4,8 @@
 
 This module is designed to simplify the painful process of validating the deep properties of an object.
 
+### [Slides](https://slides.com/ben-bradley/has-deep)
+
 ## About
 
 ```javascript

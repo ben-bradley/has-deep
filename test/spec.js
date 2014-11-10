@@ -15,12 +15,16 @@ var a = {
           e: 1
         }, {
           e: 0
+        }, {
+          e: false
         }],
         array_deeparray: [{
           e: [{
             f: 1
           }, {
             f: 0
+          }, {
+            f: false
           }]
         }],
         number_one: 1,
@@ -48,12 +52,16 @@ describe('Has Deep', function () {
         e: 1
       }, {
         e: 0
+      }, {
+        e: false
       }],
       array_deeparray: [{
         e: [{
           f: 1
         }, {
           f: 0
+        }, {
+          f: false
         }]
       }],
       number_one: 1,
@@ -115,15 +123,18 @@ describe('Has Deep', function () {
     it('when the object & property exists', function () {
       (has(a, 'b.c.d.array_ofobjects')).should.be.an.Array;
       (has(a, 'b.c.d.array_ofobjects[0]')).should.be.an.Object;
-      (has(a, 'b.c.d.array_ofobjects[0].e')).should.equal(1);
-      (has(a, 'b.c.d.array_ofobjects[1].e')).should.equal(0);
+      (has(a, 'b.c.d.array_ofobjects[0].e')).should.eql(1);
+      (has(a, 'b.c.d.array_ofobjects[1].e')).should.eql(0);
+      (has(a, 'b.c.d.array_ofobjects[1].e')).should.eql(0);
+      (has(a, 'b.c.d.array_ofobjects[2].e')).should.eql(false);
     });
 
     it('when the object & property exist deeply', function () {
       (has(a, 'b.c.d.array_deeparray[0].e')).should.be.an.Array;
       (has(a, 'b.c.d.array_deeparray[0].e[0]')).should.be.an.Object;
-      (has(a, 'b.c.d.array_deeparray[0].e[0].f')).should.equal(1);
-      (has(a, 'b.c.d.array_deeparray[0].e[1].f')).should.equal(0);
+      (has(a, 'b.c.d.array_deeparray[0].e[0].f')).should.eql(1);
+      (has(a, 'b.c.d.array_deeparray[0].e[1].f')).should.eql(0);
+      (has(a, 'b.c.d.array_deeparray[0].e[2].f')).should.eql(false);
     });
 
   });

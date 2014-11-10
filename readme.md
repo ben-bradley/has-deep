@@ -1,10 +1,8 @@
-# Has Deep [![Build Status](https://secure.travis-ci.org/ben-bradley/has-deep.png)](http://travis-ci.org/ben-bradley/has-deep)
+# Has Deep [![Build Status](https://secure.travis-ci.org/ben-bradley/has-deep.png)](http://travis-ci.org/ben-bradley/has-deep) [Slides](https://slides.com/ben-bradley/has-deep)
 
 [![NPM](https://nodei.co/npm/has-deep.png?downloads=true)](https://nodei.co/npm/has-deep/)
 
 This module is designed to simplify the painful process of validating the deep properties of an object.
-
-### [Slides](https://slides.com/ben-bradley/has-deep)
 
 ## About
 
@@ -64,7 +62,12 @@ var a = {
   b: {
     c: {
       d: {
-        e: 'winning!'
+        e: 'winning!',
+        f: [{
+          g: false
+        }, {
+          g: true
+        }]
       }
     }
   }
@@ -74,6 +77,8 @@ console.log(has(a, 'b.c.d.e.f.g')); // => undefined
 console.log(has(a, 'b.c.d.e.f')); // => undefined
 console.log(has(a, 'b.c.d.e')); // => "winning!"
 console.log(has(a, 'b.c.d')); // => { e: "winning!" }
+console.log(has(a, 'b.c.d.f[0].g')); // => false
+console.log(has(a, 'b.c.d.f[1].g')); // => true
 ```
 
 ## Install
@@ -101,5 +106,6 @@ mocha -R spec
 ```
 
 ## Versions
+- 0.0.3 - Refactored lib to be more functional, modified deep-array valitaion to detect falsey values, added comments
 - 0.0.2 - Added deep-array validation
 - 0.0.1 - Inital commit

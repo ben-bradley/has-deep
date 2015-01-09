@@ -139,4 +139,45 @@ describe('Has Deep', function () {
 
   });
 
+  describe('Evaluating a non-Object variable should return undefined', function () {
+
+    it('String', function () {
+      (has('a string', 'b.c.d') === undefined).should.equal(true);
+      (has('', 'b.c.d') === undefined).should.equal(true);
+    });
+
+    it('Number', function () {
+      (has(1, 'b.c.d') === undefined).should.equal(true);
+      (has(-1, 'b.c.d') === undefined).should.equal(true);
+      (has(0, 'b.c.d') === undefined).should.equal(true);
+    });
+
+    it('Boolean', function () {
+      (has(true, 'b.c.d') === undefined).should.equal(true);
+      (has(false, 'b.c.d') === undefined).should.equal(true);
+    });
+
+    it('null', function () {
+      (has(null, 'b.c.d') === undefined).should.equal(true);
+    });
+
+    it('undefined', function () {
+      (has(undefined, 'b.c.d') === undefined).should.equal(true);
+    });
+
+    it('Date', function () {
+      (has(new Date(), 'b.c.d') === undefined).should.equal(true);
+    });
+
+    it('Array', function () {
+      (has([], 'b.c.d') === undefined).should.equal(true);
+      (has([1], 'b.c.d') === undefined).should.equal(true);
+      (has(['a'], 'b.c.d') === undefined).should.equal(true);
+      (has([{
+        a: 'b'
+      }], 'b.c.d') === undefined).should.equal(true);
+    });
+
+  });
+
 });

@@ -106,6 +106,7 @@ mocha -R spec
 ```
 
 ## Versions
+- 0.0.4 - Providing a non-Object variabl for evaluation will return `undefined` instead of Throwing
 - 0.0.3 - Refactored lib to be more functional, modified deep-array valitaion to detect falsey values, added comments
 - 0.0.2 - Added deep-array validation
 - 0.0.1 - Inital commit

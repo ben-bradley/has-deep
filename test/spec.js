@@ -118,6 +118,18 @@ describe('Has Deep', function () {
 
   });
 
+  describe('Should be able to validate path with brackets', function () {
+
+    it('a.b.c.d.string_notempty === "winning!"', function () {
+      (has(a, 'b.c[\'d\'].string_notempty')).should.eql('winning!');
+    });
+
+    it('a.b.c === { d: { ... } }', function () {
+      (has(a, 'b["c"]')).should.be.an.Object.with.property('d');
+    });
+
+  });
+
   describe('Evaluate properties on objects in arrays', function () {
 
     it('when the object & property exists', function () {

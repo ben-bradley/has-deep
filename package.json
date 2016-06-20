@@ -1,6 +1,6 @@
 {
   "name": "has-deep",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A way to validate the properties of an object without having to walk the tree.",
   "main": "index.js",
   "directories": {

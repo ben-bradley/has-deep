@@ -176,6 +176,10 @@ describe('Has Deep', function () {
       (has(a, 'b.c.d["nested.dotted.prop"].foo["dotted.props"]') === 'should also work').should.equal(true);
     });
 
+    it('First property is dotted bracket', function () {
+      (has(a.b.c, 'd["nested.dotted.prop"].foo["dotted.props"]') === 'should also work').should.equal(true);
+    });
+
   });
 
 });

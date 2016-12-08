@@ -1,73 +1,51 @@
 var should = require('should'),
   has = require('../');
 
-var a = {
-  b: {
-    c: {
-      d: {
-        string_notempty: 'winning!',
-        string_empty: '',
-        boolean_true: true,
-        boolean_false: false,
-        array_empty: [],
-        array_notempty: [1, 2, 3],
-        array_ofobjects: [{
-          e: 1
-        }, {
-          e: 0
-        }, {
-          e: false
-        }],
-        array_deeparray: [{
-          e: [{
-            f: 1
-          }, {
-            f: 0
-          }, {
-            f: false
-          }]
-        }],
-        number_one: 1,
-        number_zero: 0,
-        null_value: null
+function BaseObject() {
+  return {
+    b: {
+      c: {
+        d: {
+          string_notempty: 'winning!',
+          string_empty: '',
+          boolean_true: true,
+          boolean_false: false,
+          array_empty: [],
+          array_notempty: [ 1, 2, 3 ],
+          array_ofobjects: [
+            { e: 1 },
+            { e: 0 },
+            { e: false }
+          ],
+          array_deeparray: [
+            { e: [
+              { f: 1 },
+              { f: 0 },
+              { f: false }
+            ]}
+          ],
+          number_one: 1,
+          number_zero: 0,
+          null_value: null,
+          'dotted.prop': 'value of dotted prop',
+          'nested.dotted.prop': {
+            foo: { 'dotted.props': 'should also work' }
+          }
+        }
       }
     }
-  }
+  };
 }
+
+var a = new BaseObject();
 
 describe('Has Deep', function () {
 
   afterEach(function () {
-    (a).should.be.an.Object.with.property('b');
-    (a.b).should.be.an.Object.with.property('c');
-    (a.b.c).should.be.an.Object.with.property('d');
-    (a.b.c.d).should.be.an.Object.with.properties({
-      string_notempty: 'winning!',
-      string_empty: '',
-      boolean_true: true,
-      boolean_false: false,
-      array_empty: [],
-      array_notempty: [1, 2, 3],
-      array_ofobjects: [{
-        e: 1
-      }, {
-        e: 0
-      }, {
-        e: false
-      }],
-      array_deeparray: [{
-        e: [{
-          f: 1
-        }, {
-          f: 0
-        }, {
-          f: false
-        }]
-      }],
-      number_one: 1,
-      number_zero: 0,
-      null_value: null
-    });
+    (a).should.be.an.Object.with.properties(new BaseObject());
+    (a.b).should.be.an.Object.with.properties(new BaseObject().b);
+    (a.b.c).should.be.an.Object.with.properties(new BaseObject().b.c);
+    (a.b.c.d).should.be.an.Object.with.properties(new BaseObject().b.c.d);
   });
 
   it('should be requireable', function () {
@@ -188,6 +166,14 @@ describe('Has Deep', function () {
       (has([{
         a: 'b'
       }], 'b.c.d') === undefined).should.equal(true);
+    });
+
+    it('Dotted Property', function () {
+      (has(a, 'b.c.d["dotted.prop"]') === 'value of dotted prop').should.equal(true);
+    });
+
+    it('Nested Dotted Properties', function () {
+      (has(a, 'b.c.d["nested.dotted.prop"].foo["dotted.props"]') === 'should also work').should.equal(true);
     });
 
   });

@@ -106,6 +106,7 @@ mocha -R spec
 ```
 
 ## Versions
+- 1.0.0 - Able to handle dotted properties.
 - 0.0.6 - Using `Object.prototype.toString.call(object) === '[object Object]'` for when `toString()` is overwritten =(
 - 0.0.4 - Providing a non-Object variabl for evaluation will return `undefined` instead of Throwing
 - 0.0.3 - Refactored lib to be more functional, modified deep-array valitaion to detect falsey values, added comments
